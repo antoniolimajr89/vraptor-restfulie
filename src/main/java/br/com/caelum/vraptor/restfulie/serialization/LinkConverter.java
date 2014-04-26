@@ -19,16 +19,19 @@ public class LinkConverter implements Converter {
 	private final Converter base;
 	private final Configuration config;
 
-	public LinkConverter(Converter base, Restfulie restfulie, Configuration config) {
+	public LinkConverter(Converter base, Restfulie restfulie,
+			Configuration config) {
 		this.base = base;
 		this.restfulie = restfulie;
 		this.config = config;
 	}
-@Override
+
+	@Override
 	public void marshal(Object root, HierarchicalStreamWriter writer,
 			MarshallingContext context) {
 		if (root instanceof ConfigurableHypermediaResource) {
-			context.convertAnother(((ConfigurableHypermediaResource) root).getModel());
+			context.convertAnother(((ConfigurableHypermediaResource) root)
+					.getModel());
 		} else {
 			base.marshal(root, writer, context);
 		}
@@ -39,7 +42,8 @@ public class LinkConverter implements Converter {
 		for (Relation t : builder.getRelations()) {
 			writer.startNode("atom:link");
 			writer.addAttribute("rel", t.getName());
-			writer.addAttribute("href", config.getApplicationPath() + t.getUri());
+			writer.addAttribute("href",
+					config.getApplicationPath() + t.getUri());
 			writer.addAttribute("xmlns:atom", "http://www.w3.org/2005/Atom");
 			writer.endNode();
 		}
@@ -52,7 +56,8 @@ public class LinkConverter implements Converter {
 		}
 		return root;
 	}
-@Override
+
+	@Override
 	public Object unmarshal(HierarchicalStreamReader arg0,
 			UnmarshallingContext arg1) {
 		return base.unmarshal(arg0, arg1);

@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.thoughtworks.xstream.XStream;
+
 import br.com.caelum.vraptor.serialization.JSONSerialization;
 import br.com.caelum.vraptor.serialization.NoRootSerialization;
 import br.com.caelum.vraptor.serialization.Serializer;
@@ -25,7 +27,7 @@ public class XStreamJSONSerialization implements JSONSerialization {
 	public boolean accepts(String format) {
 		return "json".equals(format);
 	}
-
+	
 	public <T> Serializer from(T object) {
 		return from(object, null);
 	}
@@ -37,11 +39,14 @@ public class XStreamJSONSerialization implements JSONSerialization {
 
 	protected SerializerBuilder getSerializer() {
 		try {
-			return new XStreamSerializer(builder.jsonInstance(),
-					response.getWriter());
+			return new XStreamSerializer(getXStream(), response.getWriter());
 		} catch (IOException e) {
 			throw new ResultException("Unable to serialize data", e);
 		}
+	}
+
+	public XStreamJSONSerialization() {
+		super();
 	}
 
 	/**
@@ -55,5 +60,10 @@ public class XStreamJSONSerialization implements JSONSerialization {
 	public JSONSerialization indented() {
 		builder.indented();
 		return this;
+	}
+
+	@Deprecated
+	protected XStream getXStream() {
+		return builder.jsonInstance();
 	}
 }

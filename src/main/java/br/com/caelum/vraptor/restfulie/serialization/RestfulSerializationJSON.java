@@ -41,9 +41,10 @@ public class RestfulSerializationJSON extends XStreamJSONSerialization {
 	 * serialization. It configures the xstream instance with a link converter
 	 * for all StateResource implementations.
 	 */
-	
+	@Override
 	protected XStream getXStream() {
-		XStream xStream = (XStream) super.getSerializer();
+		@SuppressWarnings("deprecation")
+		XStream xStream =  super.getXStream();
 		MethodValueSupportConverter converter = new MethodValueSupportConverter(
 				new ReflectionConverter(xStream.getMapper(),
 						xStream.getReflectionProvider()));

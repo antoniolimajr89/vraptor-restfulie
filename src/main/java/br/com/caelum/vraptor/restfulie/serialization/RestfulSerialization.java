@@ -4,27 +4,30 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.caelum.vraptor.config.Configuration;
+import br.com.caelum.vraptor.restfulie.Restfulie;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.reflection.ReflectionConverter;
 
-import br.com.caelum.vraptor.config.Configuration;
-import br.com.caelum.vraptor.restfulie.Restfulie;
-import br.com.caelum.vraptor.serialization.xstream.XStreamBuilder;
-import br.com.caelum.vraptor.serialization.xstream.XStreamXMLSerialization;
-
+/**
+ * Custom serialization process provides a way to add links to your resource
+ * representations.
+ */
 @RequestScoped
 public class RestfulSerialization extends XStreamXMLSerialization {
 
 	private Restfulie restfulie;
-	private Configuration config;
+	private  Configuration config;
 
 	/**
 	 * @deprecated CDI eyes only
 	 */
 
 	public RestfulSerialization() {
+		super(null, null);
 	}
-
+	
 	@Inject
 	public RestfulSerialization(HttpServletResponse response,
 			Restfulie restfulie, Configuration config, XStreamBuilder builder) {
@@ -38,9 +41,10 @@ public class RestfulSerialization extends XStreamXMLSerialization {
 	 * serialization. It configures the xstream instance with a link converter
 	 * for all StateResource implementations.
 	 */
-
+	@Override
 	protected XStream getXStream() {
-		XStream xStream = (XStream) super.getSerializer();
+		@SuppressWarnings("deprecation")
+		XStream xStream = super.getXStream();
 		MethodValueSupportConverter converter = new MethodValueSupportConverter(
 				new ReflectionConverter(xStream.getMapper(),
 						xStream.getReflectionProvider()));
@@ -48,5 +52,4 @@ public class RestfulSerialization extends XStreamXMLSerialization {
 				config));
 		return xStream;
 	}
-
 }
