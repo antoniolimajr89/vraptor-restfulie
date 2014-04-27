@@ -6,7 +6,7 @@ A Restfulie server plugin for vraptor 4
 Installing
 ========================
 
-If you need use client restfulie also, add the dependency
+If you need use client restfulie also, add the dependency and add dependency of this plugin
 
 ```xml
 <dependency>
