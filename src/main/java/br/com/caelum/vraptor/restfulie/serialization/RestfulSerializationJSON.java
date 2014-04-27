@@ -42,7 +42,7 @@ public class RestfulSerializationJSON extends XStreamJSONSerialization {
 	 * for all StateResource implementations.
 	 */
 	@Override
-	protected XStream getXStream() {
+	public XStream getXStream() {
 		@SuppressWarnings("deprecation")
 		XStream xStream =  super.getXStream();
 		MethodValueSupportConverter converter = new MethodValueSupportConverter(

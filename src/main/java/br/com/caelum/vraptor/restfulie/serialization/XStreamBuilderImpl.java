@@ -91,4 +91,3 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 		return indented;
 	}
 }
-

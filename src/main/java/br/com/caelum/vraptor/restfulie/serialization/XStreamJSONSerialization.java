@@ -63,7 +63,7 @@ public class XStreamJSONSerialization implements JSONSerialization {
 	}
 
 	@Deprecated
-	protected XStream getXStream() {
+	public XStream getXStream() {
 		return builder.jsonInstance();
 	}
 }

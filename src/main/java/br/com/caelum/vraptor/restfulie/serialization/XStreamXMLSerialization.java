@@ -54,7 +54,7 @@ public class XStreamXMLSerialization implements XMLSerialization {
 	 * @return a configured instance of xstream
 	 */
 	@Deprecated
-	protected XStream getXStream() {
+	public XStream getXStream() {
 		return builder.xmlInstance();
 	}
 }
