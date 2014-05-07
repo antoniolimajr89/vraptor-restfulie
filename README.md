@@ -1,7 +1,7 @@
-Vraptor-Restfulie-Server
+Vraptor-Restfulie
 ========================
 
-A Restfulie server plugin for vraptor 4
+A Restfulie plugin for vraptor 4
 
 Installing
 ========================
@@ -14,17 +14,4 @@ If you need use client restfulie also, add the dependency and add dependency of 
 	<artifactId>restfulie</artifactId>
 	<version>1.0.1</version>
 </dependency>
-```
-
-
-Configuring
-========================
-
-Add in your web.xml
-
-```xml
-<context-param>
-  <param-name>br.com.caelum.vraptor.packages</param-name>
-  <param-value>br.com.caelum.vraptor.restfulie</param-value>
-</context-param>
 ```
