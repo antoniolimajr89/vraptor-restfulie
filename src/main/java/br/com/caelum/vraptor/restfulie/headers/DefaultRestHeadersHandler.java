@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.caelum.vraptor.restfulie.RestHeadersHandler;
-import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaResource;
+import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaController;
 import br.com.caelum.vraptor.restfulie.resource.Cacheable;
 import br.com.caelum.vraptor.restfulie.resource.RestfulEntity;
 
@@ -29,19 +29,19 @@ public class DefaultRestHeadersHandler implements RestHeadersHandler {
 	}
 
 	@Override
-	public void handle(HypermediaResource resource) {
+	public void handle(HypermediaController controller) {
 		// TODO implement link headers
-		if (Cacheable.class.isAssignableFrom(resource.getClass())) {
-			Cacheable cache = (Cacheable) resource;
+		if (Cacheable.class.isAssignableFrom(controller.getClass())) {
+			Cacheable cache = (Cacheable) controller;
 			response.addHeader("Cache-control",
 					"max-age=" + cache.getMaximumAge());
 		}
-		if (RestfulEntity.class.isInstance(resource)) {
-			RestfulEntity entity = (RestfulEntity) resource;
+		if (RestfulEntity.class.isInstance(controller)) {
+			RestfulEntity entity = (RestfulEntity) controller;
 			restfulHeadersFor(entity.getEtag(), entity.getLastModified());
 		} else {
-			restfulHeadersFor(defaults.getEtagFor(resource),
-					defaults.getLastModifiedFor(resource));
+			restfulHeadersFor(defaults.getEtagFor(controller),
+					defaults.getLastModifiedFor(controller));
 		}
 
 	}

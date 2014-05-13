@@ -4,16 +4,16 @@ import java.util.Calendar;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaResource;
+import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaController;
 
 @ApplicationScoped
 public class DefaultRestDefaults implements RestDefaults {
 
-	public String getEtagFor(HypermediaResource resource) {
-		return resource.hashCode() + "";
+	public String getEtagFor(HypermediaController controller) {
+		return controller.hashCode() + "";
 	}
 
-	public Calendar getLastModifiedFor(HypermediaResource resource) {
+	public Calendar getLastModifiedFor(HypermediaController controller) {
 		return null;
 	}
 

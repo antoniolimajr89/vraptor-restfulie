@@ -1,9 +1,9 @@
 package br.com.caelum.vraptor.restfulie;
 
-import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaResource;
+import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaController;
 
 public interface RestHeadersHandler {
 
-	void handle(HypermediaResource object);
+	void handle(HypermediaController object);
 
 }

@@ -2,12 +2,12 @@ package br.com.caelum.vraptor.restfulie.headers;
 
 import java.util.Calendar;
 
-import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaResource;
+import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaController;
 
 public interface RestDefaults {
 
-	Calendar getLastModifiedFor(HypermediaResource resource);
+	Calendar getLastModifiedFor(HypermediaController controller);
 
-	String getEtagFor(HypermediaResource resource);
+	String getEtagFor(HypermediaController controller);
 
 }

@@ -1,6 +1,6 @@
 package br.com.caelum.vraptor.restfulie;
 
-import br.com.caelum.vraptor.restfulie.hypermedia.ConfigurableHypermediaResource;
+import br.com.caelum.vraptor.restfulie.hypermedia.ConfigurableHypermediaController;
 import br.com.caelum.vraptor.restfulie.relation.RelationBuilder;
 
 public interface Restfulie {
@@ -10,5 +10,5 @@ public interface Restfulie {
 	 */
 	RelationBuilder newRelationBuilder();
 
-	ConfigurableHypermediaResource enhance(Object object);
+	ConfigurableHypermediaController enhance(Object object);
 }

@@ -11,6 +11,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.InterceptionException;
+import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.controller.ControllerMethod;
 import br.com.caelum.vraptor.controller.HttpMethod;
 import br.com.caelum.vraptor.core.InterceptorStack;
@@ -18,17 +19,18 @@ import br.com.caelum.vraptor.events.RequestStarted;
 import br.com.caelum.vraptor.http.route.Route;
 import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.restfulie.Restfulie;
-import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaResource;
+import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaController;
 import br.com.caelum.vraptor.restfulie.hypermedia.Transition;
 import br.com.caelum.vraptor.restfulie.relation.Relation;
 import br.com.caelum.vraptor.restfulie.relation.RelationBuilder;
 import br.com.caelum.vraptor.view.Status;
 
+@Intercepts
 @RequestScoped
-public class ResourceControllerInterceptor<T extends HypermediaResource>
+public class ControllerInterceptor<T extends HypermediaController>
 		implements Interceptor {
 
-	private ResourceControl<T> control;
+	private ControllerControl<T> control;
 	private List<Class<?>> controllers;
 	private Status status;
 	private Restfulie restfulie;
@@ -39,11 +41,11 @@ public class ResourceControllerInterceptor<T extends HypermediaResource>
 	/**
 	 * @deprecated CDI eyes only
 	 */
-	public ResourceControllerInterceptor() {
+	public ControllerInterceptor() {
 	}
 
 	@Inject
-	public ResourceControllerInterceptor(ResourceControl<T> control,
+	public ControllerInterceptor(ControllerControl<T> control,
 			Restfulie restfulie, Status status, RequestStarted info,
 			Route routes) {
 		this.control = control;
@@ -73,12 +75,12 @@ public class ResourceControllerInterceptor<T extends HypermediaResource>
 			ParameterizedType parameterized) {
 		Type parameterType = parameterized.getActualTypeArguments()[0];
 		Class<?> found = (Class<?>) parameterType;
-		T resource = retrieveResource(found);
-		if (resource == null) {
+		T controller = retrieveResource(found);
+		if (controller == null) {
 			status.notFound();
 			return false;
 		}
-		if (allows(resource, method.getMethod())) {
+		if (allows(controller, method.getMethod())) {
 			return true;
 		}
 		status.methodNotAllowed(allowedMethods());
@@ -94,13 +96,13 @@ public class ResourceControllerInterceptor<T extends HypermediaResource>
 	private T retrieveResource(Class<?> found) {
 		String parameterName = lowerFirstChar(found.getSimpleName()) + ".id";
 		String id = info.getRequest().getParameter(parameterName);
-		T resource = control.retrieve(id);
-		return resource;
+		T controller = control.retrieve(id);
+		return controller;
 	}
 
-	private boolean allows(T resource, Method method) {
+	private boolean allows(T controller, Method method) {
 		RelationBuilder builder = restfulie.newRelationBuilder();
-		resource.configureRelations(builder);
+		controller.configureRelations(builder);
 
 		for (Relation relation : builder.getRelations()) {
 			if (relation.matches(method)) {

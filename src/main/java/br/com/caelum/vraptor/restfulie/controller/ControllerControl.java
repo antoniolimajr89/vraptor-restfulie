@@ -1,6 +1,6 @@
 package br.com.caelum.vraptor.restfulie.controller;
 
-public interface ResourceControl<T> {
+public interface ControllerControl<T> {
 
 	/**
 	 * Returns a list of controllers to be intercepted.

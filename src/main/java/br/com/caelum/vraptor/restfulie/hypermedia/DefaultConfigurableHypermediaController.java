@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.caelum.vraptor.restfulie.relation.Relation;
 import br.com.caelum.vraptor.restfulie.relation.RelationBuilder;
 
-public class DefaultConfigurableHypermediaResource implements ConfigurableHypermediaResource {
+public class DefaultConfigurableHypermediaController implements ConfigurableHypermediaController {
 
 	private final RelationBuilder delegate;
 	private final Object model;
 
-	public DefaultConfigurableHypermediaResource(RelationBuilder delegate, Object model) {
+	public DefaultConfigurableHypermediaController(RelationBuilder delegate, Object model) {
 		this.delegate = delegate;
 		this.model = model;
 	}

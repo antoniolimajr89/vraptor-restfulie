@@ -4,8 +4,8 @@ import java.util.List;
 
 import br.com.caelum.vraptor.config.Configuration;
 import br.com.caelum.vraptor.restfulie.Restfulie;
-import br.com.caelum.vraptor.restfulie.hypermedia.ConfigurableHypermediaResource;
-import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaResource;
+import br.com.caelum.vraptor.restfulie.hypermedia.ConfigurableHypermediaController;
+import br.com.caelum.vraptor.restfulie.hypermedia.HypermediaController;
 import br.com.caelum.vraptor.restfulie.relation.Relation;
 import br.com.caelum.vraptor.restfulie.relation.RelationBuilder;
 
@@ -17,7 +17,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 
 /**
- * Reads all transitions from your resource object and converts them into link
+ * Reads all transitions from your controller object and converts them into link
  * elements.<br>
  * The converter passed in the constructor will be used to marshall the rest of
  * the object.
@@ -36,15 +36,15 @@ public class LinkConverterJSON implements Converter {
 	}
 
 	public void marshal(Object root, HierarchicalStreamWriter writer, MarshallingContext context) {
-		if (root instanceof ConfigurableHypermediaResource) {
-			context.convertAnother(((ConfigurableHypermediaResource) root).getModel());
+		if (root instanceof ConfigurableHypermediaController) {
+			context.convertAnother(((ConfigurableHypermediaController) root).getModel());
 		} else {
 			base.marshal(root, writer, context);
 		}
 
-		HypermediaResource resource = (HypermediaResource) root;
+		HypermediaController controller = (HypermediaController) root;
 		RelationBuilder builder = restfulie.newRelationBuilder();
-		resource.configureRelations(builder);
+		controller.configureRelations(builder);
 
 		if( !builder.getRelations().isEmpty() ) {
 			ExtendedHierarchicalStreamWriterHelper.startNode(writer, "links", List.class);
@@ -66,7 +66,7 @@ public class LinkConverterJSON implements Converter {
 
 	@SuppressWarnings("rawtypes")
 	public boolean canConvert(Class type) {
-		return HypermediaResource.class.isAssignableFrom(type)
+		return HypermediaController.class.isAssignableFrom(type)
 				&& base.canConvert(type);
 	}
 
