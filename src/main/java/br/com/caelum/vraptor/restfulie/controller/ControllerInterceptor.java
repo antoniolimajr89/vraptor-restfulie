@@ -56,13 +56,11 @@ public class ControllerInterceptor<T extends HypermediaController>
 		this.controllers = Arrays.asList(control.getControllers());
 	}
 
-	@Override
 	public boolean accepts(ControllerMethod method) {
 		return controllers.contains(method.getController().getType())
 				&& method.getMethod().isAnnotationPresent(Transition.class);
 	}
 
-	@Override
 	public void intercept(InterceptorStack stack, ControllerMethod method,
 			Object instance) throws InterceptionException {
 		ParameterizedType type = searcher.search(control.getClass());

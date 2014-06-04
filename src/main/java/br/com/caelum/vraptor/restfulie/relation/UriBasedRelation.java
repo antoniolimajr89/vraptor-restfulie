@@ -21,7 +21,6 @@ public class UriBasedRelation implements Relation {
 		return uri;
 	}
 
-	@Override
 	public boolean matches(Method method) {
 		return false;
 	}

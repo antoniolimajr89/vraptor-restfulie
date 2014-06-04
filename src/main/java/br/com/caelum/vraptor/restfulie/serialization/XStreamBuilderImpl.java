@@ -36,7 +36,6 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 		this.extractor = extractor;
 	}
 
-	@Override
 	public XStream xmlInstance() {
 		return configure(new VRaptorXStream(extractor));
 	}
@@ -52,7 +51,7 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 	protected static final String INDENTED_NEW_LINE = "\n";
 	protected static final char[] INDENTED_LINE_INDENTER = { ' ', ' ' };
 
-	@Override
+
 	public XStream configure(XStream xstream) {
 		converters.registerComponents(xstream);
 		return xstream;
@@ -75,8 +74,7 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 			}
 		};
 	}
-
-	@Override
+	
 	public XStreamBuilder indented() {
 		indented = true;
 		return this;

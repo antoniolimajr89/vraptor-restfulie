@@ -19,13 +19,13 @@ public class DefaultConfigurableHypermediaController implements ConfigurableHype
 	public <T> T getModel() {
 		return (T) model;
 	}
-	@Override
+	
 	public void configureRelations(RelationBuilder builder) {
 		for (Relation relation : delegate.getRelations()) {
 			builder.add(relation);
 		}
 	}
-	@Override
+	
 	public void add(Relation relation) {
 		delegate.add(relation);
 	}

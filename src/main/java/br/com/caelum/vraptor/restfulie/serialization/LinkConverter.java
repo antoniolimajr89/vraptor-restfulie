@@ -26,7 +26,6 @@ public class LinkConverter implements Converter {
 		this.config = config;
 	}
 
-	@Override
 	public void marshal(Object root, HierarchicalStreamWriter writer,
 			MarshallingContext context) {
 		if (root instanceof ConfigurableHypermediaController) {
@@ -57,7 +56,6 @@ public class LinkConverter implements Converter {
 		return root;
 	}
 
-	@Override
 	public Object unmarshal(HierarchicalStreamReader arg0,
 			UnmarshallingContext arg1) {
 		return base.unmarshal(arg0, arg1);

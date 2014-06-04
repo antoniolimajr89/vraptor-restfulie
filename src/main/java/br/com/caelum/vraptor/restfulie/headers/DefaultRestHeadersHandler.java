@@ -28,7 +28,6 @@ public class DefaultRestHeadersHandler implements RestHeadersHandler {
 		this.response = response;
 	}
 
-	@Override
 	public void handle(HypermediaController controller) {
 		// TODO implement link headers
 		if (Cacheable.class.isAssignableFrom(controller.getClass())) {
