@@ -2,9 +2,11 @@ package br.com.caelum.vraptor.restfulie.serialization;
 
 import java.io.IOException;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.serialization.Serializer;
 import br.com.caelum.vraptor.serialization.SerializerBuilder;
 import br.com.caelum.vraptor.serialization.XMLSerialization;
@@ -17,12 +19,20 @@ public class XStreamXMLSerialization implements XMLSerialization {
 
 	private HttpServletResponse response;
 	private XStreamBuilder builder;
+	private Environment environment;
+	private boolean indented;
 
 	@Inject
 	public XStreamXMLSerialization(HttpServletResponse response,
-			XStreamBuilder builder) {
+			XStreamBuilder builder, Environment environment) {
 		this.response = response;
 		this.builder = builder;
+		this.environment = environment;
+	}
+	
+	@PostConstruct
+	protected void init() {
+		indented = environment.supports(ENVIRONMENT_INDENTED_KEY);
 	}
 
 	public boolean accepts(String format) {
@@ -45,6 +55,11 @@ public class XStreamXMLSerialization implements XMLSerialization {
 	public <T> Serializer from(T object, String alias) {
 		response.setContentType("application/xml");
 		return getSerializer().from(object, alias);
+	}
+	
+	public XMLSerialization indented() {
+		builder.indented();
+		return this;
 	}
 
 	/**

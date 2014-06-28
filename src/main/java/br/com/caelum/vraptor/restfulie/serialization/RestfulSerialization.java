@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.caelum.vraptor.config.Configuration;
+import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.restfulie.Restfulie;
 
 import com.thoughtworks.xstream.XStream;
@@ -25,13 +26,13 @@ public class RestfulSerialization extends XStreamXMLSerialization {
 	 */
 
 	public RestfulSerialization() {
-		super(null, null);
+		super(null, null, null);
 	}
 	
 	@Inject
 	public RestfulSerialization(HttpServletResponse response,
-			Restfulie restfulie, Configuration config, XStreamBuilder builder) {
-		super(response, builder);
+			Restfulie restfulie, Configuration config, XStreamBuilder builder, Environment environment) {
+		super(response, builder, environment);
 		this.restfulie = restfulie;
 		this.config = config;
 	}

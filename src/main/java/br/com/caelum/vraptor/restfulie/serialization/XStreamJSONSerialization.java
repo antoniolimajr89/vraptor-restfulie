@@ -2,10 +2,13 @@ package br.com.caelum.vraptor.restfulie.serialization;
 
 import java.io.IOException;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
 import com.thoughtworks.xstream.XStream;
 
+import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.serialization.JSONSerialization;
 import br.com.caelum.vraptor.serialization.NoRootSerialization;
 import br.com.caelum.vraptor.serialization.Serializer;
@@ -17,17 +20,26 @@ public class XStreamJSONSerialization implements JSONSerialization {
 
 	protected HttpServletResponse response;
 	protected XStreamBuilder builder;
+	private Environment environment;
+	private boolean indented;
 
+	@Inject
 	public XStreamJSONSerialization(HttpServletResponse response,
-			XStreamBuilder builder) {
+			XStreamBuilder builder, Environment environment) {
 		this.response = response;
 		this.builder = builder;
+		this.environment = environment;
+	}
+
+	@PostConstruct
+	protected void init() {
+		indented = environment.supports(ENVIRONMENT_INDENTED_KEY);
 	}
 
 	public boolean accepts(String format) {
 		return "json".equals(format);
 	}
-	
+
 	public <T> Serializer from(T object) {
 		return from(object, null);
 	}
@@ -43,10 +55,6 @@ public class XStreamJSONSerialization implements JSONSerialization {
 		} catch (IOException e) {
 			throw new ResultException("Unable to serialize data", e);
 		}
-	}
-
-	public XStreamJSONSerialization() {
-		super();
 	}
 
 	/**
