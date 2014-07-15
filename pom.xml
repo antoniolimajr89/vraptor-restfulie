@@ -4,8 +4,8 @@
 	<groupId>br.com.caelum.vraptor</groupId>
 	<artifactId>Restfulie-Server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Vraptor Restfulie Server</name>
-	<description>Vraptor Restfulie Server</description>
+	<name>Vraptor Restfulie</name>
+	<description>Vraptor Restfulie</description>
 
 	<dependencies>
 		<dependency>
