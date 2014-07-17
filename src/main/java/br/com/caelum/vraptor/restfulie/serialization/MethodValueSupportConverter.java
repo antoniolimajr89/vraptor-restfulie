@@ -2,6 +2,8 @@ package br.com.caelum.vraptor.restfulie.serialization;
 
 import java.lang.reflect.Method;
 
+import javax.enterprise.inject.Vetoed;
+
 import br.com.caelum.vraptor.util.StringUtils;
 
 import com.thoughtworks.xstream.XStreamException;
@@ -12,6 +14,7 @@ import com.thoughtworks.xstream.converters.reflection.ReflectionConverter;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 
+@Vetoed
 public class MethodValueSupportConverter implements Converter {
 
 	private final ReflectionConverter delegate;

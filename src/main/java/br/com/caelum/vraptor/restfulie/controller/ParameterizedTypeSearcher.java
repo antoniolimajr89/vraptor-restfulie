@@ -1,7 +1,11 @@
 package br.com.caelum.vraptor.restfulie.controller;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import javax.enterprise.inject.Vetoed;
+
+@Vetoed
 public class ParameterizedTypeSearcher {
 
 	private ParameterizedType executeFor(Class<?> control, Class<?> baseType) {

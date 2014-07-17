@@ -2,12 +2,15 @@ package br.com.caelum.vraptor.restfulie.serialization;
 
 import java.io.Writer;
 
+import javax.enterprise.inject.Vetoed;
+
 import br.com.caelum.vraptor.serialization.Serializer;
 import br.com.caelum.vraptor.serialization.SerializerBuilder;
 import br.com.caelum.vraptor.serialization.xstream.XStreamSerializer;
 
 import com.thoughtworks.xstream.XStream;
 
+@Vetoed
 public class LinksSerializer implements SerializerBuilder {
 
 	private final XStreamSerializer serializer;

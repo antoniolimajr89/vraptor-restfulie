@@ -19,19 +19,20 @@ import com.thoughtworks.xstream.converters.reflection.ReflectionConverter;
 public class RestfulSerialization extends XStreamXMLSerialization {
 
 	private Restfulie restfulie;
-	private  Configuration config;
+	private Configuration config;
 
 	/**
 	 * @deprecated CDI eyes only
 	 */
 
-	public RestfulSerialization() {
+	protected RestfulSerialization() {
 		super(null, null, null);
 	}
-	
+
 	@Inject
 	public RestfulSerialization(HttpServletResponse response,
-			Restfulie restfulie, Configuration config, XStreamBuilder builder, Environment environment) {
+			Restfulie restfulie, Configuration config, XStreamBuilder builder,
+			Environment environment) {
 		super(response, builder, environment);
 		this.restfulie = restfulie;
 		this.config = config;
@@ -44,7 +45,6 @@ public class RestfulSerialization extends XStreamXMLSerialization {
 	 */
 	@Override
 	protected XStream getXStream() {
-		@SuppressWarnings("deprecation")
 		XStream xStream = super.getXStream();
 		MethodValueSupportConverter converter = new MethodValueSupportConverter(
 				new ReflectionConverter(xStream.getMapper(),

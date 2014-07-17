@@ -13,13 +13,14 @@ import br.com.caelum.vraptor.restfulie.relation.RelationBuilder;
 @ApplicationScoped
 public class DefaultRestfulie implements Restfulie {
 
-	private Proxifier proxifier;
-	private Router router;
+	private final Proxifier proxifier;
+	private final Router router;
 
 	/**
 	 * @deprecated CDI eyes only
 	 */
-	public DefaultRestfulie() {
+	protected DefaultRestfulie() {
+		this(null, null);
 	}
 
 	@Inject

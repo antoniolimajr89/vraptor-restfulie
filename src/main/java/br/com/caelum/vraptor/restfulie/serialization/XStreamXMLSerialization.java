@@ -21,6 +21,13 @@ public class XStreamXMLSerialization implements XMLSerialization {
 	private XStreamBuilder builder;
 	private Environment environment;
 	private boolean indented;
+	
+	/**
+	 * @deprecated CDI eyes only
+	 */
+	protected XStreamXMLSerialization() {
+		this(null, null, null);
+	}
 
 	@Inject
 	public XStreamXMLSerialization(HttpServletResponse response,
@@ -65,10 +72,8 @@ public class XStreamXMLSerialization implements XMLSerialization {
 	/**
 	 * You can override this method for configuring XStream before serialization
 	 *
-	 * @deprecated prefer overwriting XStreamBuilderImpl
 	 * @return a configured instance of xstream
 	 */
-	@Deprecated
 	protected XStream getXStream() {
 		return builder.xmlInstance();
 	}

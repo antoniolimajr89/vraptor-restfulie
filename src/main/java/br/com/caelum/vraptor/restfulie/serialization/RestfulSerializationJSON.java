@@ -25,7 +25,7 @@ public class RestfulSerializationJSON extends XStreamJSONSerialization {
 	 * @deprecated CDI eyes only
 	 */
 
-	public RestfulSerializationJSON() {
+	protected RestfulSerializationJSON() {
 		super(null, null, null);
 	}
 	
@@ -44,7 +44,6 @@ public class RestfulSerializationJSON extends XStreamJSONSerialization {
 	 */
 	@Override
 	protected XStream getXStream() {
-		@SuppressWarnings("deprecation")
 		XStream xStream =  super.getXStream();
 		MethodValueSupportConverter converter = new MethodValueSupportConverter(
 				new ReflectionConverter(xStream.getMapper(),

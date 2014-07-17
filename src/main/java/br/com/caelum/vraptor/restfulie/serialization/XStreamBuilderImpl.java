@@ -18,8 +18,8 @@ import br.com.caelum.vraptor.serialization.xstream.XStreamConverters;
 @Dependent
 public class XStreamBuilderImpl implements XStreamBuilder {
 
-	private XStreamConverters converters;
-	private TypeNameExtractor extractor;
+	private final XStreamConverters converters;
+	private final TypeNameExtractor extractor;
 	private boolean indented = false;
 	private boolean withoutRoot = false;
 
@@ -27,6 +27,7 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 	 * @deprecated CDI eyes only
 	 */
 	protected XStreamBuilderImpl() {
+		this(null, null);
 	}
 
 	@Inject

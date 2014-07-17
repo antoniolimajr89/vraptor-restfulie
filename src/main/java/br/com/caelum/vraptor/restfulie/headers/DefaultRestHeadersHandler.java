@@ -12,13 +12,14 @@ import br.com.caelum.vraptor.restfulie.resource.RestfulEntity;
 
 public class DefaultRestHeadersHandler implements RestHeadersHandler {
 
-	private HttpServletResponse response;
-	private RestDefaults defaults;
+	private final HttpServletResponse response;
+	private final RestDefaults defaults;
 
 	/**
 	 * @deprecated CDI eyes only
 	 */
-	public DefaultRestHeadersHandler() {
+	protected DefaultRestHeadersHandler() {
+		this(null, null);
 	}
 
 	@Inject

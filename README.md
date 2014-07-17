@@ -6,12 +6,12 @@ A Restfulie plugin for vraptor 4
 Installing
 ========================
 
-If you need use client restfulie also, add the dependency and add dependency of this plugin
+If you need to use a client restfulie, you just need to add the dependency:
 
 ```xml
 <dependency>
-	<groupId>br.com.caelum</groupId>
-	<artifactId>restfulie</artifactId>
-	<version>1.0.1</version>
+	<groupId>br.com.caelum.vraptor</groupId>
+	<artifactId>vraptor-restfulie</artifactId>
+	<version>4.0.0</version> <!-- or last version -->
 </dependency>
 ```

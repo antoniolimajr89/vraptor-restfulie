@@ -30,18 +30,19 @@ import br.com.caelum.vraptor.view.Status;
 public class ControllerInterceptor<T extends HypermediaController>
 		implements Interceptor {
 
-	private ControllerControl<T> control;
-	private List<Class<?>> controllers;
-	private Status status;
-	private Restfulie restfulie;
-	private Route routes;
-	private RequestStarted info;
-	private ParameterizedTypeSearcher searcher = new ParameterizedTypeSearcher();
+	private final ControllerControl<T> control;
+	private final List<Class<?>> controllers;
+	private final Status status;
+	private final Restfulie restfulie;
+	private final Route routes;
+	private final RequestStarted info;
+	private final ParameterizedTypeSearcher searcher = new ParameterizedTypeSearcher();
 
 	/**
 	 * @deprecated CDI eyes only
 	 */
-	public ControllerInterceptor() {
+	protected ControllerInterceptor() {
+		this(null, null, null, null, null);
 	}
 
 	@Inject

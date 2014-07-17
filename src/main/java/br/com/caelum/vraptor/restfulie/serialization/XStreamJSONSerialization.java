@@ -18,10 +18,17 @@ import br.com.caelum.vraptor.view.ResultException;
 
 public class XStreamJSONSerialization implements JSONSerialization {
 
-	protected HttpServletResponse response;
-	protected XStreamBuilder builder;
-	private Environment environment;
+	private final HttpServletResponse response;
+	private final XStreamBuilder builder;
+	private final Environment environment;
 	private boolean indented;
+
+	/**
+	 * @deprecated CDI eyes only
+	 */
+	protected XStreamJSONSerialization() {
+		this(null, null, null);
+	}
 
 	@Inject
 	public XStreamJSONSerialization(HttpServletResponse response,
@@ -70,7 +77,6 @@ public class XStreamJSONSerialization implements JSONSerialization {
 		return this;
 	}
 
-	@Deprecated
 	protected XStream getXStream() {
 		return builder.jsonInstance();
 	}
