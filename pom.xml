@@ -6,12 +6,24 @@
 	<version>4.0.0-SNAPSHOT</version>
 	<name>VRaptor Restfulie</name>
 	<description>VRaptor Restfulie</description>
+	
+	<parent>
+            <groupId>org.sonatype.oss</groupId>
+            <artifactId>oss-parent</artifactId>
+            <version>7</version>
+    	</parent>
 
+	<scm>
+		<url>http://github.com/caelum/vraptor-restfulie</url>
+		<connection>scm:git:git://github.com/caelum/vraptor-restfulie</connection>
+		<developerConnection>scm:git:git@github.com:caelum/vraptor-restfulie.git</developerConnection>
+	</scm>
+	
 	<dependencies>
 		<dependency>
 			<groupId>br.com.caelum</groupId>
 			<artifactId>vraptor</artifactId>
-			<version>4.0.1-SNAPSHOT</version> <!--or the latest version -->
+			<version>4.1.0-RC1</version> <!--or the latest version -->
 		</dependency>
 
 		<dependency>
@@ -75,6 +87,19 @@
 				<configuration>
 					<skipTests>true</skipTests>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.4.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>1.8.1</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
