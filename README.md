@@ -1,7 +1,7 @@
-Vraptor-Restfulie
+VRaptor-Restfulie
 ========================
 
-A Restfulie plugin for vraptor 4
+A Restfulie plugin for VRaptor 4
 
 Installing
 ========================
