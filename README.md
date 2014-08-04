@@ -34,7 +34,7 @@ public class Order implements HypermediaController {
   public void configureRelations(RelationBuilder builder) {
     //with an easier to read DSL we can easily configure our links
     builder.relation("self").uses(OrdersController.class).show(id);
-builder.relation("payment").uses(OrdersController.class).payment(id);
+    builder.relation("payment").uses(OrdersController.class).payment(id);
   }
 }
 ```
