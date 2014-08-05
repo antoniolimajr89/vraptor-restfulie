@@ -30,7 +30,6 @@ public class Order implements HypermediaController {
 
   //getters and setters
 
-  //Through the builder object we are able to configure which hypermedia links will be returned with our resource
   public void configureRelations(RelationBuilder builder) {
     //with an easier to read DSL we can easily configure our links
     builder.relation("self").uses(OrdersController.class).show(id);
@@ -38,4 +37,5 @@ public class Order implements HypermediaController {
   }
 }
 ```
+Through the builder object we are able to configure which hypermedia links will be returned with our resource
 
