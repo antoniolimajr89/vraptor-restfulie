@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.caelum.vraptor</groupId>
 	<artifactId>vraptor-restfulie</artifactId>
-	<version>4.1.0-RC2</version>
+	<version>4.1.0-RC2-SNAPSHOT</version>
 	<name>VRaptor Restfulie</name>
 	<description>VRaptor Restfulie</description>
 	
