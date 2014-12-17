@@ -12,7 +12,6 @@ import br.com.caelum.vraptor.proxy.MethodInvocation;
 import br.com.caelum.vraptor.proxy.Proxifier;
 import br.com.caelum.vraptor.proxy.SuperMethod;
 
-@Vetoed
 public class DefaultRelationBuilder implements RelationBuilder {
 
 	private final List<Relation> relations = new ArrayList<Relation>();

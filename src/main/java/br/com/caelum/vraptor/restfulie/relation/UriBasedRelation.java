@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 
 import javax.enterprise.inject.Vetoed;
 
-@Vetoed
 public class UriBasedRelation implements Relation {
 
 	private final String name;

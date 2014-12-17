@@ -10,7 +10,7 @@ import br.com.caelum.vraptor.serialization.xstream.XStreamSerializer;
 
 import com.thoughtworks.xstream.XStream;
 
-@Vetoed
+
 public class LinksSerializer implements SerializerBuilder {
 
 	private final XStreamSerializer serializer;

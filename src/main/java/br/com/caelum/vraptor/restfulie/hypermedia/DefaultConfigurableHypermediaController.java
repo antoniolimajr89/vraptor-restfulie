@@ -8,7 +8,6 @@ import br.com.caelum.vraptor.restfulie.relation.Relation;
 import br.com.caelum.vraptor.restfulie.relation.RelationBuilder;
 
 
-@Vetoed
 public class DefaultConfigurableHypermediaController implements
 		ConfigurableHypermediaController {
 
