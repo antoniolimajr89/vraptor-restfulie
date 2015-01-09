@@ -14,7 +14,7 @@ import com.thoughtworks.xstream.converters.reflection.ReflectionConverter;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 
-@Vetoed
+
 public class MethodValueSupportConverter implements Converter {
 
 	private final ReflectionConverter delegate;
