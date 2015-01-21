@@ -5,7 +5,9 @@ import java.io.Writer;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
+import br.com.caelum.vraptor.serialization.Serializee;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.reflection.ReflectionProvider;
 import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
@@ -20,6 +22,7 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 
 	private final XStreamConverters converters;
 	private final TypeNameExtractor extractor;
+	private final Serializee serializee;
 	private boolean indented = false;
 	private boolean withoutRoot = false;
 
@@ -27,23 +30,24 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 	 * @deprecated CDI eyes only
 	 */
 	protected XStreamBuilderImpl() {
-		this(null, null);
+		this(null, null, null);
 	}
 
 	@Inject
 	public XStreamBuilderImpl(XStreamConverters converters,
-			TypeNameExtractor extractor) {
+			TypeNameExtractor extractor, Serializee serializee) {
 		this.converters = converters;
 		this.extractor = extractor;
+		this.serializee = serializee;
 	}
 
 	public XStream xmlInstance() {
-		return configure(new VRaptorXStream(extractor));
+		return configure(new VRaptorXStream(extractor, serializee));
 	}
 
 	public XStream jsonInstance() {
 		return configure(new VRaptorXStream(extractor,
-				getHierarchicalStreamDriver()));
+				getHierarchicalStreamDriver(),serializee));
 	}
 
 	protected static final String DEFAULT_NEW_LINE = "";
